@@ -37,6 +37,7 @@ def merge(arr, low, mid, high):
             # choose right
             else:
                 arr[n], r = tmp[r], r + 1
+                # count inversions
                 inv += mid - l
     return inv
 
