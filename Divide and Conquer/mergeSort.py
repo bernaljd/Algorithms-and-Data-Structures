@@ -3,17 +3,6 @@ Author: Juan David Bernal Maldonado
 Date (DD/MM/YY): 09/08/26
 """
 
-def mergeSort(arr, low, high):
-    if low + 1 < high:
-        mid = (low + high) // 2
-        linv = mergeSort(arr, low, mid)
-        rinv = mergeSort(arr, mid, high)
-        # merge two sorted halves
-        inv = merge(arr, low, mid, high)
-        ans = linv + rinv + inv
-    else: ans = 0
-    return ans 
-
 def merge(arr, low, mid, high):
     tmp = [0] * len(arr)
     # make a copy of current segment
@@ -40,6 +29,18 @@ def merge(arr, low, mid, high):
                 # count inversions
                 inv += mid - l
     return inv
+
+def mergeSort(arr, low, high):
+    if low + 1 < high:
+        mid = (low + high) // 2
+        # count inversions for left(l) and right(r)
+        linv = mergeSort(arr, low, mid)
+        rinv = mergeSort(arr, mid, high)
+        # merge two sorted halves
+        inv = merge(arr, low, mid, high)
+        ans = linv + rinv + inv
+    else: ans = 0
+    return ans 
 
 A = [3, 2, 4, 1]
 print(mergeSort(A, 0, len(A)))
