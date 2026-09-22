@@ -12,27 +12,22 @@ def divideConquer(arr, cumSum, l, r):
         bestNode = None
         bestDiff = float('inf')
         bestJ = -1
-
         i = l
         while i <= r:
             j = i
-            while j + 1 <= r and arr[j + 1] == arr[i]:   # avanzar hasta el fin del bloque
+            while j + 1 <= r and arr[j + 1] == arr[i]:  
                 j += 1
-
-            left = cumSum[j] - cumSum[l]        # todo antes del bloque (excluye el bloque entero, incluida la raíz)
+            left = cumSum[j] - cumSum[l]      
             if j < r:
                 right = cumSum[r + 1] - cumSum[j + 1]
             else:
                 right = 0
-
             diff = abs(right - left)
-
             if diff <= bestDiff:
                 bestNode = arr[j]
                 bestDiff = diff
                 bestJ = j
-
-            i = j + 1   # saltar al siguiente bloque distinto
+            i = j + 1   
 
         izq = divideConquer(arr, cumSum, l, bestJ - 1)
         der = divideConquer(arr, cumSum, bestJ + 1, r)
@@ -46,7 +41,6 @@ def divideConquer(arr, cumSum, l, r):
             ans = raiz + "(" + der + ")"
         else:
             ans = raiz
-
     return ans
 
 def cumulativeSum(arr):
@@ -66,5 +60,4 @@ def main():
         ans = divideConquer(nodes, cumSum, 0, n - 1)
         print("Case #%d: " % (i + 1), end="")
         print(ans)
-
 main()
