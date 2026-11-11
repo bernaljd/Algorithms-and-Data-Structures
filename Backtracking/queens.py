@@ -1,27 +1,38 @@
-"""  
-Author: Juan David Bernal
-Date: 22/09/2026
-"""
 
 from sys import stdin
 
-def isSafe():
-    
+def check(s, r):
+    ans = True
+    c = len(s)
+    for i in range(c):
+        if s[i] == r: ans = False
+        if (s[i] - r) == abs(i - c): ans = False
+    return ans
 
-def backtrack(board, col, N, sol):
-    if col == N:
-        sol.append(["".join(row) for row in board])
+def solve(s, sols):
+    if len(s) == 8:
+        sols.append(s.copy())
     else:
-        for row in range(N):
-            if isSafe():
-                pass
-
+        for i in range(1,9):
+            if check():
+                s.append(i)
+                solve(s, sols)
+                s.pop()
 
 def main():
-    N = int(stdin.readline().strip())
-    board = [['.' for _ in range(N)] for _ in range(N)]
-    ans = []
-
-    ans = backtrack(board, 0, N, ans)
-    
+    sols = list()
+    solve([], sols)
+    line = stdin.readline().strip()
+    case = 1
+    while(line != ''):
+        l = list(map(int, line.split()))
+        ans = 8
+        for S in sols:
+            movs = 0
+            for c in range(8):
+                if l[c] != S[c]: movs += 1
+            ans = min(ans, movs)
+        print('Case {}: {}'.format(case, ans))
+        line = stdin.readline().strip()
+        case += 1
 main()
