@@ -3,11 +3,9 @@ Author: Juan David Bernal Maldonado
 Date (DD/MM/YYYY): 11/11/2026 
 """
 
-from sys import stdin 
-
-def fact(x, tab):
-    tab.append(1)
+def fact(x):
+    tab = [0 for _ in range(x + 1)]
+    tab[0] = 1
     for i in range(1, x + 1):
-        tab.append((tab[i - 1]) * i)
+        tab[i] = tab[i - 1] * i
     return tab[x]
-

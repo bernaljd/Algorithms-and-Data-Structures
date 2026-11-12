@@ -3,8 +3,6 @@ Author: Juan David Bernal Maldonado
 Date (DD/MM/YYYY): 11/11/2026 
 """
 
-from sys import stdin
-
 def fibo(n):
     tab = [0 for _ in range(n + 1)]
     tab[1] = 1
