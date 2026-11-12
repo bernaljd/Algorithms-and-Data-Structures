@@ -16,11 +16,16 @@ def solve(n, A, tab):
     return tab[n]
 
 def main():
-    line = stdin.readline()
+    line = int(stdin.readline())
+    i = 0
     while line != "":
-        n = int(line)
+        if i > 0:
+            n = int(stdin.readline())
+        else:
+            n = int(line)
         people = list(map(int, stdin.readline().split()))
         print(solve(0, people, [0 for _ in range(n + 1)]))
-        line = stdin.readline().strip()
+        i += 1
+        line = stdin.readline()
 
 main()
