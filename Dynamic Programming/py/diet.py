@@ -25,8 +25,7 @@ def main():
     t = int(stdin.readline())
     for _ in range(t):
         n = int(stdin.readline())
-        global E
-        global mem
+        global E, mem
         E = n
         mem = {}
         p = int(stdin.readline())
